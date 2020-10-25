@@ -3,13 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/HighScores.css">
+    <link rel="stylesheet" href="assets/css/Highscore.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/game.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <title>Quiz High Scores</title>
 </head>
 <body>
     <div class="container">
-        <H1>High Scores</H1>
+        <div id="HighScores" class="flex-center">
+            <h1 id="finalScore"></h1>
+            <form>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="username"
+                />
+                <button type= "submit" class="btn" id="submitBtn"
+                onClick="submitHighScore"(event)
+                disabled
+                >Submit</button>
+
+                <a class= "btn" href= "game.html">Play again</a>
+                <a class= "btn" href= "index.html">Home</a>
+            </form>
+        </div>
     </div>
+    <script src=HighScore.js></script>
 </body>
+
 </html>

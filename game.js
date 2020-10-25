@@ -1,5 +1,8 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const scoreText = document.getElementById("score");
+const Countdowntimer = document.getElementById("timer");
+
 
 let currentQuestions = {};
 let acceptingAmswers = false;
@@ -85,43 +88,58 @@ let questions = [
 
 
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 9;
+const MAX_QUESTIONS = 3;
 
 startGame = () => {
-    questionCounter = 0;
-    score = 0;
-    availableQuesions = [...questions];
-    getNewQuestion();
+  questionCounter = 0;
+  score = 0;
+  availableQuesions = [...questions];
+  getNewQuestion();
 };
 
 getNewQuestion = () => {
-    if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        //go to the end page
-        return window.location.assign('/end.html');
-    }
-    questionCounter++;
-    const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-    currentQuestion = availableQuesions[questionIndex];
-    question.innerText = currentQuestion.question;
+  if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    localStorage.setItem("mostRecentScore", score);
+    //go to the end page
+    return window.location.assign("HighScores.html");
+  }
+  
+  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
+  currentQuestion = availableQuesions[questionIndex];
+  question.innerText = currentQuestion.question;
 
-    choices.forEach((choice) => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
-    });
+  choices.forEach(choice => {
+    const number = choice.dataset["number"];
+    choice.innerText = currentQuestion["choice" + number];
+  });
 
-    availableQuesions.splice(questionIndex, 1);
-    acceptingAnswers = true;
+  availableQuesions.splice(questionIndex, 1);
+  acceptingAnswers = true;
 };
 
-choices.forEach((choice) => {
-    choice.addEventListener('click', (e) => {
-        if (!acceptingAnswers) return;
+choices.forEach(choice => {
+  choice.addEventListener("click", e => {
+    if (!acceptingAnswers) return;
 
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
-        getNewQuestion();
-    });
+    acceptingAnswers = false;
+    const selectedChoice = e.target;
+    const selectedAnswer = selectedChoice.dataset["number"];
+
+    const classToApply =
+      selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+    if (classToApply === "correct") {
+      incrementScore(CORRECT_BONUS);
+    }
+
+    getNewQuestion();
+   
+  });
 });
+
+incrementScore = num => {
+  score += num;
+  scoreText.innerText = score;
+};
 
 startGame();
