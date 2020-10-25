@@ -1,8 +1,12 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const scoreText = document.getElementById("score");
-const Countdowntimer = document.getElementById("timer");
 
+let seconds = 60, $seconds = document.querySelector('#timer');
+(function countdown() {
+    $seconds.textContent = seconds + (seconds == 1 ?  '' :  's')
+    if(seconds --> 0) setTimeout(countdown, 1000)
+})();
 
 let currentQuestions = {};
 let acceptingAmswers = false;
