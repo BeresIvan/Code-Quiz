@@ -1,0 +1,61 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    padding:20px;
+    margin:20px;
+    background-color: hsl(207, 26%, 64%);
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    padding-top: 30px;
+    color: hsl(206, 17%, 28%);
+  }
+
+  .container {
+    font-family: 'Playfair Display', serif;
+  }
+
+
+#info_card {
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    color: hsl(206, 17%, 28%);
+    font-size: 18px;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 30px 40px;
+  }
+
+ .btn {
+    border: none;
+    background-color: rgb(68, 68, 216);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+      0px;
+    color: hsl(0, 0%, 100%);
+    display: inline-block;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 5px 5px 5px 5px;
+    padding: 14px 34px;
+    text-align: center;
+    cursor: pointer;
+  }
+.hidden {
+  display: none;
+}
+  
+.btn[disabled]:hover {
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
